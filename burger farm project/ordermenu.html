@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger Farm</title>
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet">
+
+    <!-- AOS (Animate on Scroll) -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="orderstyle.css">
+
+
+
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-expand-sm  fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://www.uengage.in/images/addo/logos/logo-6670-1720185141.png"
+                    style="height: auto; width: 70px;" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contectus.html">Contact Us</a>
+                    </li>
+                </ul>
+                <!-- Sign In/Log Out Icon -->
+                <div class="ms-3">
+                    <a href="#carting">
+                        <i id="cart" onclick="cartPage()" class="fas fa-shopping-bag fa-2x"
+                            style="color:#fff; z-index: 50;"></i>
+                        <span id="cartCount" class="badge ">0</span>
+                    </a>
+                    <!-- Sign Up Icon -->
+                    <i class="fas fa-user-plus fa-2x" id="signUpIcon"
+                        style="color:#fff; cursor: pointer; margin-right: 15px;"></i>
+                    <!-- sign in icon -->
+                    <i class="fas fa-user-circle fa-2x" id="userIcon" style="color:#fff;cursor: pointer;"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Modals -->
+    <!-- Sign Up Modal -->
+    
+<div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="signUpModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="signUpModalLabel">Sign Up</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="signUpForm">
+                    <div class="form-floating mb-3 position-relative">
+                        <i class="fa fa-user input-group-text" style="color: #f47820;"></i>
+                        <input type="text" class="form-control ps-5" id="signUpName" placeholder=" " required>
+                        <label for="signUpName">Name</label>
+                    </div>
+                    <div class="form-floating mb-3 position-relative">
+                        <i class="fa fa-envelope input-group-text" style="color: #f47820;"></i>
+                        <input type="email" class="form-control ps-5" id="signUpEmail" placeholder=" " required>
+                        <label for="signUpEmail">Email</label>
+                    </div>
+                    <div class="form-floating mb-3 position-relative">
+                        <i class="fa fa-lock input-group-text" style="color: #f47820;"></i>
+                        <input type="password" class="form-control ps-5" id="signUpPassword" placeholder=" " required>
+                        <label for="signUpPassword">Password</label>
+                        
+                    </div>
+                    <button type="submit" class="btn signbutton">
+                        <i class="fa fa-user-plus"></i> Sign Up
+                    </button>
+                    <button type="button" id="togglePassword" class="btn btn-secondary">
+                        Show
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sign In Modal -->
+    <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signInModalLabel">Sign In</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="signInForm">
+                        <div class="form-floating mb-3 position-relative">
+                            <i class="fa fa-user input-group-text" style="color: #f47820;"></i>
+                            <input type="text" class="form-control ps-5" id="signInName" placeholder=" " required>
+                            <label for="signUpName">Name</label>
+                        </div>
+                        <div class="form-floating mb-3 position-relative">
+                            <i class="fa fa-envelope input-group-text" style="color: #f47820;"></i>
+                            <input type="email" class="form-control ps-5" id="signInEmail" placeholder=" " required>
+                            <label for="signInEmail">Email</label>
+                        </div>
+                        <div class="form-floating mb-3 position-relative">
+                            <i class="fa fa-lock input-group-text" style="color: #f47820;"></i>
+                            <input type="password" class="form-control ps-5" id="signInPassword" placeholder=" "
+                                required>
+                            <label for="signInPassword">Password</label>
+                        </div>
+                        <button type="submit" class="btn signbutton">
+                            <i class="fa fa-sign-in-alt"></i> Sign In
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Success</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="successMessage"></p>
+                    <button class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container-fluid mt-5 my-5">
+        <div class="row">
+            <div class="col-md-3 mb-4 mt-0 menuback" id="menu">
+                <h2>Main Menu</h2>
+                <div class="list-group">
+                    <a href="#Burger" class="list-group-item list-group-item-action"><span><img
+                                src="https://cdn.uengage.io/uploads/6670/image-414456-1671521691.jpeg" alt="burgers img"
+                                class="img-fluid me-2" style="width: 45px; height: 45px; border-radius: 5px;"></span>Burgers</a>
+                    <a href="#Meals" class="list-group-item list-group-item-action"><span><img
+                                src="https://cdn.uengage.io/uploads/6670/image-946687-1680353462.jpeg" alt="meals img"
+                                class="img-fluid me-2"
+                                style="width: 45px; height: 45px; border-radius: 5px;"></span>Meals</a>
+                    <a href="#Fries" class="list-group-item list-group-item-action"><span><img
+                                src="https://cdn.uengage.io/uploads/6670/image-251327-1680353462.jpeg" alt="fries img"
+                                class="img-fluid me-2"
+                                style="width: 45px; height: 45px; border-radius: 5px;"></span>Fries</a>
+                    <a href="#Bravrages" class="list-group-item list-group-item-action"><span><img
+                                src="https://cdn.uengage.io/uploads/6670/image-427828-1680353462.jpeg"
+                                alt="bravrages img" class="img-fluid me-2" 
+                                style="width: 45px; height: 45px; border-radius: 5px;"></span>Beverages</a>
+                    <a href="#Dessert" class="list-group-item list-group-item-action"><span><img
+                                src="https://cdn.uengage.io/uploads/6670/image-561229-1671521691.jpeg" alt="dessert img"
+                                class="img-fluid me-2" 
+                                style="width: 45px; height: 45px; border-radius: 5px;"></span>Dessert</a>
+                </div>
+            </div>
+
+            <!-- Main Content (70%) -->
+            <div class="col-md-9 foodselection" data-aos="fade-right">
+                <h2 id="Burger" data-aos="fade-up">Burger</h2>
+
+                <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 g-4 mb-3" data-aos="fade-right">
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-592655-1677051044.jpeg"
+                                class="card-img-top" alt="Aloo Tikki Burger" data-aos="fade-up">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Aloo Tikki Burger</h5>
+                                <p>Price: ₹ 62</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Aloo Tikki Burger" data-price="62"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-592655-1677051044.jpeg">Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-951742-1677051044.jpeg"
+                                class="card-img-top" alt="Crispy Masala Burger" data-aos="fade-right">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Crispy Masala Burger</h5>
+                                <p>Price: ₹ 85</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Crispy Masala Burger"
+                                    data-price="85"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-951742-1677051044.jpeg">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-619481-1677051044.jpeg"
+                                class="card-img-top" alt="Go Green Burger" data-aos="fade-left">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Go Green Burger</h5>
+                                <p>Price: ₹ 129</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Go Green Burger" data-price="129"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-619481-1677051044.jpeg">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-697672-1677051044.jpeg"
+                                class="card-img-top" alt="Paneer Burger" data-aos="fade-right">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Paneer Burger</h5>
+                                <p>Price: ₹ 199</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Paneer Burger" data-price="199"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-697672-1677051044.jpeg">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 g-4" data-aos="fade-left">
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-949841-1677051044.jpeg"
+                                class="card-img-top" alt="Veg Burger" data-aos="fade-right">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Pepper Jack Cheese Burger</h5>
+                                <p>Price: ₹ 149</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Pepper Jack Cheese Burger"
+                                    data-price="149"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-949841-1677051044.jpeg">Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-415183-1700292901.jpeg"
+                                class="card-img-top" alt="Veg Burger" data-aos="fade-up">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Cheesy Masala Burger</h5>
+                                <p>Price: ₹ 99</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Cheesy Masala Burger"
+                                    data-price="99"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-415183-1700292901.jpeg">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-811279-1677054193.jpeg"
+                                class="card-img-top" alt="Veg Burger" data-aos="fade-down">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Veg Burger</h5>
+                                <p>Price: ₹ 149</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Veg Burger" data-price="149"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-811279-1677054193.jpeg">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-697672-1677051044.jpeg"
+                                class="card-img-top" alt="Veg Burger" data-aos="fade-left">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Spice Pepper Burger</h5>
+                                <p>Price: ₹ 199</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Spice Pepper Burger"
+                                    data-price="199"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-697672-1677051044.jpeg">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <h2 class="mt-2 mb-2" id="Meals" data-aos="fade-up">Meals</h2>
+
+                <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 g-4 mb-3" data-aos="fade-right">
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-914849-1644511269.jpeg"
+                                class="card-img-top" alt="Veg Burger" data-aos="fade-up">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Aloo Tikki Meal</h5>
+                                <p>Price: ₹ 129</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Aloo Tikki Meal" data-price="129"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-914849-1644511269.jpeg">Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-978132-1644511268.jpeg"
+                                class="card-img-top" alt="Veg Burger" data-aos="fade-right">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Crispy Masala Meal</h5>
+                                <p>Price: ₹ 185</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Crispy Masala Meal"
+                                    data-price="185"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-978132-1644511268.jpeg">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-149259-1644511269.jpeg"
+                                class="card-img-top" alt="Veg Burger" data-aos="fade-down">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Go Green Meal</h5>
+                                <p>Price: ₹ 209</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Go Green Meal" data-price="209"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-149259-1644511269.jpeg">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-896842-1644511269.jpeg"
+                                class="card-img-top" alt="Veg Burger" data-aos="fade-right">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Popeye Meal</h5>
+                                <p>Price: ₹ 209</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Popeye Meal" data-price="209"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-896842-1644511269.jpeg">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 g-4" data-aos="fade-right">
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-523877-1644511269.jpeg"
+                                class="card-img-top" alt="Veg Burger" data-aos="fade-left">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Spicy Paneer Meal</h5>
+                                <p>Price: ₹ 279</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Spicy Paneer Meal"
+                                    data-price="279"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-523877-1644511269.jpeg">Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-992453-1672409260.jpeg"
+                                class="card-img-top" alt="Veg Burger" data-aos="fade-up">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Pepper Jack Cheese Meal</h5>
+                                <p>Price: ₹ 250</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Pepper Jack Cheese Meal"
+                                    data-price="250"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-992453-1672409260.jpeg">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-769988-1672409260.jpeg"
+                                class="card-img-top" alt="Veg Burger" data-aos="fade-right">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Cheese Burst Meal</h5>
+                                <p>Price: ₹ 320</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Cheese Burst Meal"
+                                    data-price="320"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-769988-1672409260.jpeg">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-652285-1672409260.jpeg"
+                                class="card-img-top" alt="Veg Burger" data-aos="fade-left">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Crispy Paneer Italia Meal</h5>
+                                <p>Price: ₹ 350</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Crispy Paneer Italia Meal"
+                                    data-price="350"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-652285-1672409260.jpeg">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <h2 class="mt-2 mb-2" id="Fries" data-aos="fade-up">Fries</h2>
+
+                <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 g-4 mb-3" data-aos="fade-left">
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-461753-1644510651.jpeg"
+                                class="card-img-top" alt="Small Fries" data-aos="fade-up">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Small Fries</h5>
+                                <p>Price: ₹ 79</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Small Fries" data-price="79"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-461753-1644510651.jpeg">Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-738188-1644510650.jpeg"
+                                class="card-img-top" alt="Medium Fries" data-aos="fade-down">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Medium Fries</h5>
+                                <p>Price: ₹ 99</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Medium Fries" data-price="99"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-738188-1644510650.jpeg">Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-332436-1644510651.jpeg"
+                                class="card-img-top" alt="Peri Peri Fries" data-aos="fade-left">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Peri Peri Fries</h5>
+                                <p>Price: ₹ 119</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Peri Peri Fries" data-price="119"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-332436-1644510651.jpeg">Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-966449-1644510651.jpeg"
+                                class="card-img-top" alt="Peri Peri Cheesy Fries" data-aos="fade-right">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Peri Peri Cheesy Fries</h5>
+                                <p>Price: ₹ 149</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Peri Peri Cheesy Fries"
+                                    data-price="149"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-966449-1644510651.jpeg">Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <h2 class="mt-2 mb-2" id="Bravrages" data-aos="fade-up">Beverages</h2>
+
+                <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 g-4">
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-687968-1644510439.jpeg"
+                                class="card-img-top" alt="Masala Coke Lemonade" data-aos="fade-down">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Masala Coke Lemonade</h5>
+                                <p>Price: ₹ 89</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Masala Coke Lemonade"
+                                    data-price="89"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-687968-1644510439.jpeg">Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-527675-1644510439.jpeg"
+                                class="card-img-top" alt="Lemon Ice Tea" data-aos="fade-up">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Lemon Ice Tea</h5>
+                                <p>Price: ₹ 89</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Lemon Ice Tea" data-price="89"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-527675-1644510439.jpeg">Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-968568-1644510439.jpeg"
+                                class="card-img-top" alt="Thums Up" data-aos="fade-right">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Thums Up</h5>
+                                <p>Price: ₹ 40</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Thums Up" data-price="40"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-968568-1644510439.jpeg">Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-216377-1644510438.jpeg"
+                                class="card-img-top" alt="Cappuccino" data-aos="fade-left">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Cappuccino</h5>
+                                <p>Price: ₹ 99</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Cappuccino" data-price="99"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-216377-1644510438.jpeg">Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <h2 class="mt-2 mb-2" id="Dessert" data-aos="fade-up">Desserts</h2>
+
+                <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 g-4 mb-3">
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-268383-1644510425.jpeg"
+                                class="card-img-top" alt="Chocolava Cake" data-aos="fade-right">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Chocolava Cake</h5>
+                                <p>Price: ₹ 129</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Chocolava Cake" data-price="129"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-268383-1644510425.jpeg">Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-659274-1644510425.jpeg"
+                                class="card-img-top" alt="Nutella Choco Brownie" data-aos="fade-left">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Nutella Choco Brownie</h5>
+                                <p>Price: ₹ 129</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Nutella Choco Brownie"
+                                    data-price="129"
+                                    data-image="https://cdn.uengage.io/uploads/6670/image-659274-1644510425.jpeg">Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS6cofjXIUswrCdyRjsIola7ZqBvebkA_9OMHnswahLpHL5veBfBrcrXdzePWb7DS4XksbYtgyQ9vNDmVOXMO6h7pnoAWjAKziFhaNB8GGC"
+                                class="card-img-top" alt="Brownie Cake" data-aos="fade-up">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Brownie Cake</h5>
+                                <p>Price: ₹ 140</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Brownie Cake" data-price="140"
+                                    data-image="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS6cofjXIUswrCdyRjsIola7ZqBvebkA_9OMHnswahLpHL5veBfBrcrXdzePWb7DS4XksbYtgyQ9vNDmVOXMO6h7pnoAWjAKziFhaNB8GGC">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col col-lg-3">
+                        <div class="card shadow-sm">
+                            <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRS-tKbz0SUgpdGdJTGZKSsRDV05Jr7zg1ooocmbbv5c2cAcyvHG_9Iosn9zSMonR0c1mYWwvBQl8GwFMVaLIsNn2v6qNnXkzd_doNcwXhTAtvmk8nwNGKKdw"
+                                class="card-img-top" alt="Choco Brownie Ice Cream" data-aos="fade-down">
+                            <div class="card-body text-center d-flex flex-column justify-content-between">
+                                <h5 class="card-title">Choco Brownie Ice Cream</h5>
+                                <p>Price: ₹ 189</p>
+                                <button class="btn btn-danger add-to-cart" data-name="Choco Brownie Ice Cream"
+                                    data-price="189"
+                                    data-image="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRS-tKbz0SUgpdGdJTGZKSsRDV05Jr7zg1ooocmbbv5c2cAcyvHG_9Iosn9zSMonR0c1mYWwvBQl8GwFMVaLIsNn2v6qNnXkzd_doNcwXhTAtvmk8nwNGKKdw">Add
+                                    to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </main>
+
+
+    <div id="container44" class="container my-5" data-bs-spy="scroll">
+        <div id="rightdiv4">
+            <h3>Cart Details</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cartItems">
+                    <!-- Cart items will be added dynamically -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">Subtotal</td>
+                        <td id="subtotal">₹0</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">Tax (10%)</td>
+                        <td id="tax">₹0</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">Estimated Total</td>
+                        <td id="estimatedTotal">₹0</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <button id="checkoutbutton" onclick="paymentfunction()">CHECKOUT</button>
+
+
+        </div>
+    </div>
+
+    <!-- Payment Section -->
+    <div id="paymentSection" style="display: none; margin: 20px auto; padding: 20px; max-width: 600px;">
+        <h3>Payment Details</h3>
+        <form id="paymentForm">
+            <div class="mb-3 form-floating position-relative">
+                <i class="bi bi-telephone input-group-text"></i>
+
+                <input type="tel" id="mobile" class="form-control ps-5" placeholder="Enter your mobile number" required
+                    pattern="^(\+\d{1,2}\s?)?[0-9]{10}$" maxlength="14" required>
+                <label for="mobile" class="form-label">Mobile Number</label>
+
+            </div>
+            <div class="mb-3 form-floating position-relative">
+                <i class="bi bi-geo-alt input-group-text"></i>
+                <input type="text" id="address" class="form-control ps-5" placeholder="Enter your address" required>
+                <label for="name" class="form-label">Address</label>
+
+            </div>
+
+            <button type="submit" class="btn btn-success" id="genratebill">Generate Bill</button>
+            <button type="button" class="btn btn-danger" id="cancelPayment">Cancel Payment</button>
+        </form>
+    </div>
+
+
+
+    <!-- Final Bill -->
+    <div id="billSection"
+        style="display: none; margin: 20px auto; padding: 20px; max-width: 600px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9;">
+        <h3
+            style="text-align: center; color: #333; margin-bottom: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10px;">
+            Final Bill</h3>
+        <div id="billDetails" style="font-size: 16px; color: #555;">
+            <!-- Bill details will be inserted dynamically -->
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <button onclick="downloadBill()" class="btn btn-success no-print">Download Bill</button>
+            <button onclick="resetCart()" class="btn btn-primary no-print">Back to Menu</button>
+        </div>
+
+    </div>
+    <!-- <button id="backButton" class="btn btn-secondary" style="display: none;">Back</button> -->
+
+    <!-- progress status -->
+    <div class="modal fade" id="progressModal" tabindex="-1" aria-labelledby="progressModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Order Delivery Progress</h5>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body text-center">
+                    <div class="progress" style="height: 10px;">
+                        <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                            role="progressbar" style="width: 0%;">0%</div>
+                    </div>
+                    <p id="progressText" class="mt-3">Order is being processed...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Status -->
+    <p id="orderStatus" class="mt-3" style="font-weight: bold; text-align: center; color: green; display: none;">Order Delivered ✅</p>
+
+    <!-- validation -->
+    <div id="orderStatusContainer" style="display:none;">
+        <p id="orderStatus" style="font-weight: bold; color: green; text-align: center;">Order Delivered ✅</p>
+        <!-- Back to Menu Button -->
+        <button id="backToMenu" class="btn btn-secondary">Back to Menu</button>
+    </div>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row text-center">
+                <!-- Company Info Section -->
+                <div class="col-md-3">
+                    <h5>About Us</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Franchise Opportunities</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Menu Section -->
+                <div class="col-md-3">
+                    <h5>Menu</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Burgers</a></li>
+                        <li><a href="#">Sides</a></li>
+                        <li><a href="#">Beverages</a></li>
+                        <li><a href="#">Desserts</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="col-md-3">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="mailto:info@burgerplace.com">burgerfarm@gmail.com</a></li>
+                        <li><a href="tel:+1234567890">+91 7016057005</a></li>
+                        <li>Burger Farm
+                            GROUND FLOOR GF 1, Silver Radiance 2, Science City Rd, opp. EMPIRE BUSINESS HOUSE, Science
+                            City, Sola, Ahmedabad,
+                            Gujarat 380060</li>
+                    </ul>
+                </div>
+
+                <!-- Social Media Section -->
+                <div class="col-md-3">
+                    <h5>Follow Us</h5>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><i class="bi bi-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="bi bi-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="script.js"></script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <script>
+        AOS.init();
+    </script>
+    <script>
+        
+    </script>
+</body>
+
+</html>
