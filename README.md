@@ -1,10 +1,16 @@
 Here’s the updated `README.md` with the demo link added:
 
 ---
-
-# Burger Farm 🍔
+ <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&pause=1000&color=000000&width=300&weight=700&lines=Burger+Farm+🍔" alt="Typing SVG">
+# 
 
 **Burger Farm** is a web application that allows users to order custom burgers, manage their cart, and download bills. It includes features like user authentication, cart management, order customization, and delivery status tracking.
+---
+
+## Demo 🎥
+
+Check out the live demo of **Burger Farm** here:  
+👉 [Burger Farm Demo](https://burger-farm-psi.vercel.app)
 
 ---
 
@@ -46,11 +52,6 @@ Here’s the updated `README.md` with the demo link added:
    - Contact Us
    - About Us
 
-
-## Demo 🎥
-
-Check out the live demo of **Burger Farm** here:  
-👉 [Burger Farm Demo](https://burger-farm-psi.vercel.app)
 
 ---
 
