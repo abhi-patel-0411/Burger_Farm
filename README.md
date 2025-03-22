@@ -1,5 +1,3 @@
-Here’s the updated `README.md` with the demo link added:
-
 ---
  
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&pause=1000&color=000000&width=300&weight=800&lines=Burger+Farm+🍔" alt="Typing SVG">
