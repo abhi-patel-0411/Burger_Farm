@@ -1,9 +1,9 @@
 Here’s the updated `README.md` with the demo link added:
 
 ---
- <div align="center">
+ 
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&pause=1000&color=000000&width=300&weight=800&lines=Burger+Farm+🍔" alt="Typing SVG">
-</div>
+
 
 
 **Burger Farm** is a web application that allows users to order custom burgers, manage their cart, and download bills. It includes features like user authentication, cart management, order customization, and delivery status tracking.
