@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger Farm</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+    <!-- AOS (Animate on Scroll) -->
+    <style>
+  * {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* scroll-snap-type: Y proximity; */
+}
+
+::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--scrollbar--bg--color);
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--nav--bg--color);
+    border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--footer--hover--color);
+}
+
+:root {
+    --body--bg--color: rgba(244, 120, 32, 0.2);
+    --nav--bg--color: #f47820;
+    --footer--hover--color: #f39c12;
+    --scrollbar--bg--color: #1f2025;
+    --scroll--thumb--bg--color: #000;
+    --social-icons--color: #ecf0f1;
+    --social-icons--hover--color: #ff7f50;
+    --section--header--color: #333;
+    --section--description--color: #555;
+    --form-control-bg-color: #f9f9f9;
+    --text--color: white;
+}
+
+body {
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-style: normal;
+    padding-top: 70px;
+    overflow-x: hidden;
+    background-color: var(--body--bg--color);
+
+
+}
+
+.carousel {
+    height: 600px;
+}
+
+/* .carousel img {
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+} */
+
+
+
+
+.section-header {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--section--header--color);
+    margin-bottom: 1.5rem;
+}
+
+.section-description {
+    font-size: 1.1rem;
+    color: var(--section--description--color);
+    margin-bottom: 3rem;
+    line-height: 1.8;
+}
+
+
+
+.social-icons a {
+    color: var(--text--color);
+    margin: 0 10px;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--social-icons--hover--color);
+}
+
+
+
+
+.form-control {
+    background-color: var(--form-control-bg-color);
+    color: var(--scroll--thumb--bg--color);
+}
+
+/* Section Styling */
+/* #contact {
+    position: relative;
+    z-index: 1;
+} */
+
+
+nav {
+    background-color: var(--nav--bg--color);
+
+}
+
+
+
+.ordermenu {
+    background-color: var(--nav--bg--color);
+
+}
+
+.ordermenu img {
+    float: right;
+}
+
+.ordermenu a {
+    display: inline;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: var(--text--color);
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    color: var(--scrollbar--bg--color);
+}
+
+@media(max-width:576px) {
+    nav {
+        overflow-x: hidden;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    section {
+        overflow-x: hidden;
+    }
+
+    .carousel {
+        height: 300px;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .carousel img {
+        width: 100%;
+        object-fit: fill;
+
+    }
+
+    div {
+        overflow-x: hidden;
+    }
+
+    #menu {
+        overflow-x: hidden;
+    }
+}
+
+.footer {
+
+    color: var(--text--color);
+    padding: 40px 0;
+
+}
+
+.footer h5 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.footer a {
+    color: var(--social-icons--color);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: var(--footer--hover--color);
+}
+
+.footer .social-icons a {
+    font-size: 1.5rem;
+    margin: 0 10px;
+    color: var(--social-icons--color);
+}
+
+.footer .social-icons a:hover {
+    color: var(--footer--hover--color);
+}
+
+footer {
+    background-image: url("assets/footer-bg.png");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#logo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--nav--bg--color);
+    /* Background color */
+    display: flex;
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    z-index: 1000;
+    overflow: hidden;
+    /* Prevent overflow */
+}
+
+/* Logo styling */
+#logo-overlay img {
+    width: auto;
+    height: 100px;
+    /* Fixed height for larger devices */
+    max-width: 100%;
+    animation: blink 5s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    50%,
+    100% {
+        opacity: 1;
+    }
+
+    25%,
+    75% {
+        opacity: 0.3;
+    }
+}
+
+@media (max-width: 768px) {
+    #logo-overlay img {
+        height: 80px;
+        /* Adjust height for tablets and smaller devices */
+    }
+}
+
+@media (max-width: 576px) {
+    #logo-overlay img {
+        height: 70px;
+        /* Further adjust height for mobile screens */
+        width: auto;
+    }
+
+    nav .container-fluid {
+        padding: 0px 12px 0px 12px;
+    }
+
+
+}
+
+#main-content {
+    display: none;
+}
+
+.container-fluid {
+    padding: 0px;
+}
+
+.navbar-toggler {
+    border: 0px;
+    border-radius: 0px;
+}
+
+.navbar-toggler-icon {
+    border: 0px;
+    border-radius: 0px;
+
+}
+
+nav {
+    --bs-navbar-toggler-focus-width: 0px;
+    --bs-navbar-toggler-border-radius: 0px;
+    --bs-navbar-toggler-transition: none;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.carousel-item video {
+    object-fit: fill;
+    height: 500px;
+}
+
+@media(max-width:576px) {
+
+    .carousel-item video {
+        object-fit: fill;
+        height: auto;
+    }
+}
+  </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    
+
+</head>
+
+<body>
+    
+    <div id="logo-overlay">
+        <img src="https://www.uengage.in/images/addo/logos/logo-6670-1720185141.png" class="" alt="Burger Farm Logo">
+
+    </div>
+    <div class="container-fluid" id="main-content">
+        <nav class="navbar navbar-expand-lg  fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="https://www.uengage.in/images/addo/logos/logo-6670-1720185141.png"
+                        style="height: auto; width: 70px;" alt="">
+                </a>
+                <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#menu">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contectus.html">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <div id="hero" class="carousel slide mt-5" data-bs-ride="carousel" data-bs-interval="5000" data-aos="fade-up">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <video class="d-block w-100" autoplay muted loop playsinline>
+                        <source src="./burger farm project/assets/burger_video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Burger Menu Section -->
+        <section id="menu" class="container-fluid text-center my-5">
+            <h2 class="section-header" data-aos="fade-left">Our Delicious Burgers</h2>
+            <p class="section-description" data-aos="fade-right">
+                Whether you crave classic flavors or daring combinations, this is where your culinary journey begins.
+                Indulge your cravings and savor every bite as you create your personalized burger experience with Burger
+                Company.
+            </p>
+            <div class="row ordermenu" id="menu">
+                <div style="order: 2;" class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
+                    <h2 data-aos="fade-left">Fresh Delicious</h2>
+                    <h2 data-aos="fade-right">Burgers</h2>
+                    <a href="ordermenu.html" class="btn btn-dark" data-aos="fade-left">Order Now</a>
+                </div>
+                <div class="col-lg-6" style="order: 0;">
+                    <img src="	https://burgerfarm.in/assets/wla_new/burger_farm/img/burger-burger-farm.png"
+                        class="img-fluid" data-aos="fade-right" style="width: 100%;" alt="">
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Footer -->
+        <section id="about">
+            <img src="https://cdn.uengage.io/uploads/6670/image-265741-1720244133.jpeg" style="width: 100%;" alt=""
+                data-aos="fade-right">
+        </section>
+        <section class="section__container event__container" id="event">
+            <div class="container py-5">
+                <div class="row align-items-center"> <!-- Using Bootstrap Grid -->
+
+                    <!-- Event Image Column -->
+
+
+                    <!-- Event Details Column -->
+                    <div class="col-md-6 col-12">
+                        <div class="event__details">
+                            <h3 data-aos="fade-left">Discover</h3>
+                            <h2 class="section__header" data-aos="fade-right">UPCOMING EVENTS</h2>
+                            <p class="section__description" data-aos="fade-left">
+                                From exclusive burger tastings and chef collaborations to community
+                                outreach initiatives and seasonal celebrations, there's always
+                                something special on the horizon at Burger Company. Be the first to
+                                know about our upcoming events, promotions, and gatherings as we
+                                continue to bring joy and flavor to our cherished customers. Join us
+                                in creating memorable moments and delicious memories together!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 mb-4 mb-md-0">
+                        <div class="event__image">
+                            <img src="https://cdn.uengage.io/uploads/6670/image-614598-1671521691.jpeg" alt="event"
+                                class="img-fluid" data-aos="fade-right" />
+
+                            <!-- Using img-fluid for responsive images -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row text-center">
+                    <!-- Company Info Section -->
+                    <div class="col-md-3">
+                        <h5>About Us</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Our Story</a></li>
+                            <li><a href="#">Franchise Opportunities</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Menu Section -->
+                    <div class="col-md-3">
+                        <h5>Menu</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Burgers</a></li>
+                            <li><a href="#">Sides</a></li>
+                            <li><a href="#">Beverages</a></li>
+                            <li><a href="#">Desserts</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Section -->
+                    <div class="col-md-3">
+                        <h5>Contact</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="mailto:info@burgerplace.com">burgerfarm@gmail.com</a></li>
+                            <li><a href="tel:+1234567890">+91 7016057005</a></li>
+                            <li>Burger Farm
+                                GROUND FLOOR GF 1, Silver Radiance 2, Science City Rd, opp. EMPIRE BUSINESS HOUSE,
+                                Science City, Sola, Ahmedabad,
+                                Gujarat 380060</li>
+                        </ul>
+                    </div>
+
+                    <!-- Social Media Section -->
+                    <div class="col-md-3">
+                        <h5>Follow Us</h5>
+                        <div class="social-icons">
+                            <a href="#" target="_blank"><i class="bi bi-facebook"></i></a>
+                            <a href="#" target="_blank"><i class="bi bi-twitter"></i></a>
+                            <a href="#" target="_blank"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" target="_blank"><i class="bi bi-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        AOS.init();
+    </script>
+    <script>
+
+        setTimeout(() => {
+            document.getElementById("logo-overlay").style.display = "none";
+            document.getElementById("main-content").style.display = "block";
+            AOS.refresh();
+        }, 1000);
+    </script>
+
+</body>
+
+</html>
