@@ -1,4 +1,4 @@
----
+
  
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&pause=1000&color=000000&width=300&weight=800&lines=Burger+Farm+🍔" alt="Typing SVG">
 
@@ -6,14 +6,14 @@
 
 **Burger Farm** is a web application that allows users to order custom burgers, manage their cart, and download bills. It includes features like user authentication, cart management, order customization, and delivery status tracking.
 
----
+
 
 ## Demo 🎥
 
 Check out the live demo of **Burger Farm** here:  
 👉 [Burger Farm Demo](https://burger-farm-psi.vercel.app)
 
----
+
 
 ## Functionality 📋
 
@@ -29,8 +29,6 @@ Check out the live demo of **Burger Farm** here:
 | **Contact Us**          | Form to contact the support team.                                               |
 | **About Us**            | Information about Burger Farm.                                                  |
 
----
----
 
 ## Features 🌟
 
@@ -54,7 +52,6 @@ Check out the live demo of **Burger Farm** here:
    - About Us
 
 
----
 
 ## How to Run 🚀
 
@@ -75,16 +72,16 @@ Check out the live demo of **Burger Farm** here:
 - Add user reviews and ratings.
 - Implement a loyalty program.
 
----
+
 
 ## License 📄
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
----
+
 
 Enjoy your burgers! 🍔🍟🥤
 
----
+
 
 Let me know if you need further adjustments! 😊
